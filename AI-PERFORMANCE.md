@@ -23,6 +23,3 @@
 不记录问题原文、密钥或模型完整输入。阶段包括 dashboard、planning、history、
 intraday、stock-history、search、news、answer、answer-final。
 并行阶段耗时不能直接相加作为总耗时。完成响应中的 timings 同样可用于测试。
-
-本次仅本地修改。上线前需对现有模型网关进行少量实测，
-分别观察首段文字时间、完整回答时间及冷/热缓存；不要把流式展示视为模型生成提速。
