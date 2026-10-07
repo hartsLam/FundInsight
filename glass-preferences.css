@@ -1,0 +1,38 @@
+.glass-setting { margin-top: 18px; padding-top: 20px; border-top: 1px solid var(--line); }
+.glass-setting-heading, .glass-setting-limits { display: flex; justify-content: space-between; gap: 16px; }
+.glass-setting-heading { font-size: 14px; font-weight: 600; }
+.glass-setting output { font-variant-numeric: tabular-nums; color: var(--theme-accent); }
+#glassAmount { display: block; width: 100%; height: 32px; margin: 10px 0 0; padding: 0; accent-color: var(--theme-accent); cursor: pointer; }
+.glass-setting-limits { font-size: 12px; color: var(--muted); }
+html[data-theme][data-glass] :is(.panel,.metric,.metric.primary,.metric:nth-child(3),.sage-sidebar,.fund-dialog,.theme-dialog) {
+  background-color: color-mix(in srgb, var(--glass-surface) var(--glass-amount), var(--theme-surface));
+  -webkit-backdrop-filter: blur(var(--preferred-blur)) saturate(140%);
+  backdrop-filter: blur(var(--preferred-blur)) saturate(140%);
+}
+html[data-theme][data-glass] :is(.panel,.metric,.fund-dialog,.theme-dialog)::before { opacity: var(--glass-strength); }
+html[data-theme][data-glass] :is(.panel button,.topbar-actions button,#manageFunds),
+html[data-theme][data-glass] #trend .fund-ranges button {
+  -webkit-backdrop-filter: blur(var(--preferred-control-blur)) saturate(140%);
+  backdrop-filter: blur(var(--preferred-control-blur)) saturate(140%);
+}
+html[data-theme][data-glass] #trend .fund-ranges button:not([aria-pressed="true"]) {
+  background-color: color-mix(in srgb, var(--glass-control) var(--glass-amount), var(--theme-surface));
+}
+@media (max-width: 1023px), (hover: none), (pointer: coarse) {
+  html[data-theme][data-glass] :is(.panel,.metric,.metric.primary,.metric:nth-child(3)) { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  html[data-theme][data-glass] :is(.sage-sidebar,.fund-dialog,.theme-dialog,.panel button,.topbar-actions button,#manageFunds),
+  html[data-theme][data-glass] #trend .fund-ranges button {
+    -webkit-backdrop-filter: blur(var(--preferred-mobile-blur)); backdrop-filter: blur(var(--preferred-mobile-blur));
+  }
+}
+html[data-theme][data-glass="0"] :is(.panel,.metric,.metric.primary,.metric:nth-child(3),.sage-sidebar,.fund-dialog,.theme-dialog,.panel button,.topbar-actions button,#manageFunds),
+html[data-theme][data-glass="0"] #trend .fund-ranges button {
+  background-image: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+@media (prefers-reduced-transparency: reduce) {
+  html[data-theme][data-glass] :is(.panel,.metric,.sage-sidebar,.fund-dialog,.theme-dialog,.panel button,.topbar-actions button,#manageFunds),
+  html[data-theme][data-glass] #trend .fund-ranges button {
+    background-image: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+  html[data-theme][data-glass] :is(.panel,.metric,.metric.primary,.metric:nth-child(3),.sage-sidebar,.fund-dialog,.theme-dialog) { background-color: var(--theme-surface); }
+}

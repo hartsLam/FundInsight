@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>访问验证</title>
+    <script src="/themes.js?v=3"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/sage.css?v=1">
+    <link rel="stylesheet" href="/themes.css?v=6">
+  </head>
+  <body class="login-body">
+    <main class="login-shell">
+      <section class="login-panel">
+        <form id="loginForm" class="login-form">
+          <label for="password">访问密码</label>
+          <div class="login-row">
+            <input id="password" name="password" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="one-time-code" required>
+            <button type="submit">确认</button>
+          </div>
+          <p id="loginMessage" class="login-message" role="status"></p>
+        </form>
+      </section>
+    </main>
+    <script>
+      const form = document.getElementById("loginForm");
+      const message = document.getElementById("loginMessage");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        message.textContent = "";
+        const password = new FormData(form).get("password");
+        const response = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password })
+        });
+        if (response.ok) {
+          location.href = "/";
+          return;
+        }
+        const payload = await response.json().catch(() => ({}));
+        message.textContent = payload.error || "验证失败。";
+      });
+    </script>
+  </body>
+</html>

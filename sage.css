@@ -1,0 +1,192 @@
+:root {
+  color-scheme: light;
+  --bg: #d3dccf; --panel: #e9eee5; --panel-soft: #dfe7dc;
+  --line: #bac9bb; --text: #233d35; --muted: #586e62;
+  --gold: #346c59; --cyan: #147569; --green: #23774e; --red: #b64244; --ink: #fff;
+  --shadow: 7px 9px 20px #566a4920, -4px -4px 14px #ffffff75;
+  --clay: inset 2px 2px 3px #ffffffb8, inset -2px -2px 4px #6b806018, var(--shadow);
+}
+body { background: var(--bg); }
+body, button, input, select, textarea { letter-spacing: 0; }
+h1 { font-size: 27px; font-weight: 750; line-height: 1.4; }
+h2 { font-size: 18px; }
+.eyebrow { color: #527064; letter-spacing: 0; font-size: 10px; }
+.shell { width: calc(100% - 272px); max-width: 1620px; margin: 0 24px 0 248px; padding-top: 30px; }
+.sage-sidebar { position: fixed; z-index: 20; left: 22px; top: 24px; bottom: 24px; width: 200px; padding: 26px 18px; display: flex; flex-direction: column; gap: 26px; background: #e5ebdf; border: 1px solid #f5f8f0; border-radius: 26px; box-shadow: var(--clay); }
+.sage-brand { display: flex; align-items: center; gap: 11px; font-size: 21px; font-weight: 750; text-decoration: none; color: #214c41; }
+.sage-brand img { padding: 9px; width: 42px; height: 42px; border-radius: 14px; background: #b7d1be; box-shadow: var(--clay); }
+.sage-sidebar small { display: block; color: var(--muted); font-size: 11px; margin: 0 12px 12px; }
+.sage-nav { display: grid; gap: 8px; }
+.sage-nav a, .sage-nav button { display: flex; align-items: center; gap: 12px; padding: 12px; color: #496356; font: inherit; font-size: 13px; border: 0; background: none; text-decoration: none; border-radius: 12px; cursor: pointer; }
+.sage-nav img { width: 19px; height: 19px; opacity: .7; }
+.sage-nav a:hover, .sage-nav button:hover { background: #d9e4d4; }
+.sage-nav a.active { color: #176d5e; font-weight: 700; background: #d8e1d2; box-shadow: inset 3px 3px 7px #6d816333, inset -3px -3px 7px #fff9; }
+.sage-sidebar-bottom { margin-top: auto; border-top: 1px solid var(--line); padding-top: 18px; }
+.topbar { min-height: 76px; }
+.topbar > div { flex: 1; }
+.topbar > .icon-button { flex: none; }
+.fund-picker { margin-top: 10px; }
+.fund-picker select { background: #e5ecdf; color: var(--text); border-color: #eff4e9; box-shadow: inset 3px 3px 7px #7a8f6f25, inset -2px -2px 5px #fff9; border-radius: 12px; }
+.icon-button, .fund-manage-button { background: #e7ede2; color: #316453; border: 1px solid #f0f5eb; border-radius: 14px; box-shadow: var(--clay); }
+.icon-button img { width: 20px; height: 20px; }
+.overview { gap: 18px; margin-top: 26px; margin-bottom: 24px; }
+.metric { position: relative; padding: 22px; background: #e8eee1; border: 1px solid #f3f8ec; border-radius: 22px; box-shadow: var(--clay); }
+.metric.primary { background: #dbeade; }
+.metric:nth-child(2) { background: #eee8e4; }
+.metric:nth-child(3) { background: #e6e9f0; }
+.metric:nth-child(4) { background: #e8eddf; }
+.metric strong, .valuation-metric #estimateValue { font-size: 30px; font-variant-numeric: tabular-nums; }
+.metric #stance { font-size: 24px; line-height: 1.3; }
+.metric .published-nav { margin-top: 12px; }
+.panel { background: #e7ede2; border: 1px solid #f4f7ef; border-radius: 22px; padding: 22px; box-shadow: var(--clay); }
+.grid { gap: 20px; }
+.analysis-stack { gap: 20px; }
+.panel-head { margin-bottom: 18px; }
+canvas { background: transparent; border: 0; border-radius: 0; }
+.fund-ranges { gap: 6px; }
+.fund-ranges button { color: #516759; background: #dce5d7; border: 1px solid transparent; border-radius: 9px; box-shadow: inset 2px 2px 4px #7b8b6a1c; }
+.fund-ranges button[aria-pressed=true] { color: #fff; background: #237b6b; border-color: #237b6b; box-shadow: inset 1px 1px 3px #ffffff5c, 2px 3px 6px #577a6330; }
+#fundChartModes button[data-mode="intraday"][aria-pressed="true"] { background: #237b6b; border-color: #237b6b; }
+#fundChartModes { border-color: #c2cfbe; }
+.fund-chart-summary strong { font-size: 29px; color: #245849; }
+.fund-chart-footer a { color: #176f60; }
+.fund-dates input { color: var(--text); background: #f0f4ec; border-color: var(--line); }
+.fund-dates button { color: white; background: #287c68; }
+.bar-track { background: #cbd8c6; box-shadow: inset 1px 2px 3px #57704b25; height: 9px; }
+.bar-fill { background: #3b9380; }
+.bar-row:nth-child(3n+2) .bar-fill { background: #7b8fac; }
+.bar-row:nth-child(3n) .bar-fill { background: #c39163; }
+.tag, .status { color: #4d6456; background: #d7e2d1; border-color: transparent; }
+.tag:nth-child(3n) { background: #dce3ea; color: #4b6279; }
+.impact p, .news-item p, .news-excerpt { color: #496253; }
+.impact p { border-left-color: #6d9b80; }
+.news-item a:hover { color: #0f6a5b; }
+.news-meta { color: #627467; font-size: 11px; }
+.ai-editor-label { color: #32618c; }
+.ai-editor-note { background: #dce7ee; border-left-color: #709abb; border-radius: 0 8px 8px 0; }
+.ai-editor-note .ai-copy { color: #38586f; }
+.news-research .news-evidence .ai-source { color: #2e5445; }
+.table-panel { margin-top: 20px; }
+th { background: #dce5d5; color: #526958; }
+td { font-size: 13px; }
+tbody tr:nth-child(even) { background: #dde6d650; }
+tbody tr:hover { background: #d5e2ce; }
+.total-row td { background: #d7e4d0; }
+.stock-link, .admin-link { color: #236c59; }
+.index-strip span { background: #dbe4d5; color: #455f50; border-color: #c7d4bf; }
+footer { font-size: 11px; line-height: 1.8; gap: 14px; }
+.chat-window { background: #eaf0e7; border-color: #fafff4; border-radius: 20px; color: #253e35; box-shadow: 10px 18px 45px #2f493c45, inset 1px 1px 3px #fff; }
+.chat-header, .chat-window #questionForm, .chat-window #chatStatus { background: #e2ebdc; border-color: #bfceba; }
+.chat-window textarea { background: #f4f7f0; color: #294236; border-color: #c1d0ba; border-radius: 12px; }
+.chat-window .chat-assistant { background: #f9fbf5; color: #2d443a; }
+.chat-window .chat-user, .chat-window #askButton, .chat-launcher { background: #247d6b; color: #fff; }
+.chat-launcher { border-color: #ecf5e6; box-shadow: 4px 6px 15px #53674d50, inset 2px 2px 4px #fff5; }
+.chat-window :focus-visible, .chat-launcher:focus-visible { outline-color: #247d6b; }
+.chat-window .ai-meta, .chat-header small, .chat-compose-actions small, .chat-window #questionForm label { color: #576e61; }
+.fund-dialog { background: #e7eee0; color: var(--text); border-color: #f3f8ec; border-radius: 22px; box-shadow: var(--clay); }
+.fund-dialog::backdrop { background: #243e354f; backdrop-filter: blur(3px); }
+.fund-dialog button, .admin-shell button, .ai-section button { color: #fff; background: #267b67; border: 1px solid #418a76; border-radius: 10px; box-shadow: inset 1px 1px 3px #ffffff4d, 2px 3px 6px #4d765a25; }
+.fund-dialog .fund-close { color: #335d48; background: #dce6d5; border-color: #c3d0ba; box-shadow: none; }
+.fund-dialog input:not([type=radio]), .admin-shell input:not([type=checkbox]), .admin-shell select { background: #eff4e9; color: var(--text); border-color: #b6c7ae; box-shadow: inset 2px 2px 4px #61785515; }
+.admin-shell { max-width: 960px; padding: 28px; background: #e5ecdf; border-radius: 22px; box-shadow: var(--clay); }
+.admin-shell .secondary { color: #3e6350; background: #d4e0ce; }
+.admin-shell a { color: #1b725e; }
+.fund-warning { color: #805d31; background: #ede6d6; border-left-color: #b78d55; }
+.login-panel { background: #e6eddf; border: 1px solid #f3f8ec; border-radius: 22px; box-shadow: var(--clay); }
+.login-row input { background: #f0f5eb; border-color: #b5c8ae; color: var(--text); box-shadow: inset 2px 2px 5px #667e5222; }
+.login-row button { background: #267b67; color: white; border: 0; }
+:focus-visible { outline: 2px solid #207760; outline-offset: 3px; }
+.sage-sidebar { gap: 20px; width: 220px; padding: 22px 16px; transition: width .28s ease, transform .28s ease, padding .28s ease; overflow-x: hidden; overflow-y: auto; }
+.shell { margin-left: 266px; width: calc(100% - 290px); transition: margin-left .28s ease, width .28s ease; }
+.sage-brand { gap: 12px; white-space: nowrap; }
+#sidebarToggle { display: grid; place-items: center; width: 42px; height: 42px; padding: 0; background: none; border: 0; cursor: pointer; flex: none; border-radius: 14px; }
+#sidebarToggle img { display: block; }
+.sage-brand span, .sage-nav span { transition: opacity .18s ease; }
+.sidebar-funds { display: flex; align-items: center; gap: 6px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.sidebar-funds #manageFunds { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 42px; padding: 10px; color: #285742; font: inherit; font-size: 13px; border: 1px solid #f3f7ef; background: #dce8d6; box-shadow: inset 2px 2px 5px #ffffff66, 2px 3px 6px #55724d12; cursor: pointer; border-radius: 12px; }
+.sidebar-funds .fund-manage-icon { margin-left: auto; opacity: .55; }
+.sidebar-funds #manageFunds img { width: 18px; height: 18px; }
+.sidebar-workspace { min-height: 0; }
+#sidebarFundLabel { white-space: pre-line; overflow-wrap: anywhere; line-height: 1.7; color: #315b48; font-weight: 600; margin: 0 10px 16px; }
+.sage-nav a, .sage-nav button { white-space: nowrap; min-height: 44px; }
+.sage-nav img { flex: none; }
+.sidebar-collapsed .sage-sidebar { width: 72px; padding: 22px 10px; }
+.sidebar-collapsed .shell { margin-left: 116px; width: calc(100% - 140px); }
+.sidebar-collapsed .sage-brand span, .sidebar-collapsed .sage-nav span { width: 0; opacity: 0; overflow: hidden; }
+.sidebar-collapsed .sidebar-funds, .sidebar-collapsed #sidebarFundLabel { display: none; }
+.sidebar-collapsed .sidebar-funds { display: flex; padding-bottom: 16px; }
+.sidebar-collapsed .sidebar-funds #manageFunds { justify-content: center; }
+.sidebar-collapsed #manageFunds span, .sidebar-collapsed #manageFunds .fund-manage-icon { display: none; }
+.sidebar-collapsed .sage-nav a, .sidebar-collapsed .sage-nav button { gap: 0; justify-content: center; padding: 12px 0; }
+.sidebar-collapsed .sage-brand { justify-content: center; gap: 0; }
+#mobileMenu, #sidebarBackdrop { display: none; }
+#overview, #trend, #allocation, #market, #holdings { scroll-margin-top: 24px; }
+.chat-window #questionForm { padding: 12px 14px 8px; }
+.chat-window #questionForm .chat-label { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.chat-input-wrap { display: flex; align-items: flex-end; gap: 8px; padding: 8px; border: 1px solid #c4d3bd; border-radius: 18px; background: #f7faf3; box-shadow: inset 1px 2px 4px #405e4310; }
+.chat-input-wrap:focus-within { border-color: #55947d; box-shadow: 0 0 0 2px #247d6b15; }
+.chat-window .chat-input-wrap textarea { border: 0; box-shadow: none; outline: none; background: transparent; padding: 5px 6px; min-height: 44px; height: 62px; font-size: 14px; line-height: 1.6; }
+.chat-window #questionForm #askButton { flex: none; width: 34px; height: 34px; margin: 0 0 2px; }
+.chat-compose-actions { padding: 7px 4px 0; }
+.chat-compose-actions small { font-size: 10px; }
+.chat-welcome { margin-top: 4px; }
+.chat-suggestions { display: flex; flex-wrap: wrap; gap: 8px; flex: none; padding-bottom: 6px; }
+.chat-window .chat-suggestions button { max-width: 100%; padding: 8px 12px; border-radius: 18px; border: 1px solid #bcd3c6; background: #f6faf3; color: #306753; font-size: 12px; line-height: 1.5; white-space: normal; text-align: left; box-shadow: 0 2px 5px #3c725409; }
+.chat-window .chat-suggestions button:hover:not(:disabled) { background: #dceee1; border-color: #6eaa8f; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.fund-dialog { width: min(680px, calc(100vw - 28px)); padding: 26px; }
+.fund-dialog-head { align-items: flex-start; margin-bottom: 22px; }
+.fund-dialog-head h2 { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 22px; }
+#fundCount { color: #647c6d; font-size: 12px; font-weight: 400; }
+.fund-dialog #addFundForm { padding-bottom: 20px; border-bottom: 1px solid #c5d3bd; }
+.fund-dialog #newFundCode { height: 44px; border-radius: 12px; padding: 10px 14px; background: #f2f6ed; }
+.fund-dialog #addFundForm button { height: 44px; padding: 0 16px; }
+.fund-dialog #managedFunds { padding: 10px 0 0; }
+.fund-dialog .managed-fund { display: grid; grid-template-columns: minmax(0, 1fr) 80px 122px; gap: 12px; align-items: center; padding: 16px 12px; border-bottom: 1px solid #cedbc6; border-radius: 8px; margin: 4px 0; transition: background .18s ease; }
+.fund-dialog .managed-fund.is-selected { background: #d6e7d5; box-shadow: inset 3px 0 #34876c; }
+.fund-dialog .managed-fund-name { min-width: 0; }
+.fund-dialog .managed-fund-name strong { font-size: 14px; line-height: 1.6; }
+.fund-dialog .managed-fund-name small { font-size: 12px; color: #6a7e6e; font-variant-numeric: tabular-nums; }
+.fund-dialog .fund-selection { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 12px; color: #3e7058; min-height: 40px; cursor: pointer; white-space: nowrap; }
+.fund-selection input { width: 16px; height: 16px; margin: 0; accent-color: #247d6b; cursor: pointer; }
+.fund-dialog .fund-actions { justify-content: flex-end; gap: 4px; }
+.fund-dialog .fund-actions button { background: #e9f0e2; color: #596e5b; border: 1px solid #c8d7be; box-shadow: none; border-radius: 8px; }
+.fund-dialog .fund-actions img { filter: none; opacity: .65; }
+.fund-dialog .fund-actions button:last-child { color: #975e54; }
+.fund-dialog .fund-actions button:hover:not(:disabled) { background: #cfe1c6; }
+.fund-dialog #fundStatus { min-height: 22px; font-size: 12px; }
+@media (max-width: 600px) {
+  .fund-dialog { padding: 20px 16px; }
+  .fund-dialog .managed-fund { grid-template-columns: minmax(0, 1fr) 122px; padding: 14px 10px; gap: 6px; }
+  .fund-dialog .managed-fund-name { grid-column: 1 / -1; }
+  .fund-dialog .fund-selection { grid-column: 1; }
+  .fund-dialog .fund-actions { grid-column: 2; }
+}
+@media (max-width: 1279px) {
+  .sage-sidebar { display: flex; width: 250px; top: 12px; bottom: 12px; left: 12px; z-index: 65; transform: translateX(-115%); }
+  .sidebar-open .sage-sidebar { transform: translateX(0); }
+  body.sidebar-open { overflow: hidden; }
+  #mobileMenu { position: absolute; left: 20px; top: 20px; display: grid; place-items: center; width: 40px; height: 40px; border: 1px solid #f5faef; border-radius: 12px; background: #e4ecdd; box-shadow: var(--clay); cursor: pointer; }
+  #mobileMenu img { width: 21px; height: 21px; }
+  #sidebarBackdrop:not([hidden]) { display: block; position: fixed; inset: 0; width: 100%; height: 100%; z-index: 64; border: 0; background: #173f3045; backdrop-filter: blur(2px); }
+  .shell { padding-top: 76px; }
+}
+@media (prefers-reduced-motion: reduce) { .sage-sidebar, .shell, .sage-nav span, .sage-brand span { transition: none; } }
+@media (max-width: 1279px) {
+  .shell { width: calc(100% - 40px); margin: 0 auto; }
+}
+@media (max-width: 720px) {
+  .shell { width: calc(100% - 24px); padding-top: 72px; }
+  h1 { font-size: 23px; } h2 { font-size: 17px; }
+  .overview { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .metric { padding: 16px; border-radius: 16px; min-width: 0; }
+  .valuation-metric { grid-column: 1 / -1; }
+  .metric:last-child { grid-column: 1 / -1; }
+  .metric strong { font-size: 26px; }
+  .panel { padding: 16px; border-radius: 16px; }
+  .fund-picker select { width: 100%; }
+  .topbar { align-items: flex-start; }
+  .fund-manage-button { padding: 8px 12px; }
+  .fund-chart-summary strong { font-size: 26px; }
+  .admin-shell { padding: 20px 16px; }
+}

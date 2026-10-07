@@ -1,0 +1,17 @@
+{
+  "name": "fund-162201-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A deployable VPS dashboard for fund 162201 holdings, allocation changes, K-lines, sector events, and impact analysis.",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check ai-service.js && node --check assistant-tools.js && node --check stock-industry.js && node --check search-providers.js && node --check fund-registry.js && node --check fund-value.js && node --check fund-history.js && node --check fund-intraday.js && node --check public/fund-chart.js && node --check public/app.js && node --check public/admin.js && node --check public/ai-ui.js && node --check public/chat-resize.js && node --check public/fund-manager.js && node --check fund-evidence.js && node --check public/sage.js && node --check public/themes.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "technicalindicators": "3.1.0"
+  }
+}

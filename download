@@ -1,0 +1,11 @@
+node_modules/
+data/
+*.log
+admin-desktop.png
+admin-mobile.png
+ai-mobile.png
+.env
+.env.*
+*.zip
+*.pem
+*.key

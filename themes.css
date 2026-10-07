@@ -1,0 +1,201 @@
+:root { --theme-accent: #247d6b; --theme-on-accent: #fff; --theme-secondary: #537ca3; --theme-surface: #f2f6ed; --theme-border: #bdcdb6; --theme-icon: none; --theme-shadow: 0 14px 45px #29433324; --theme-note: #dce7ee; --theme-note-text: #38586f; --theme-selected: #d6e7d5; --chart-line: #247d6b; --chart-history: #537ca3; --chart-grid: #bac9bb; --chart-label: #586e62; }
+html[data-theme=emerald] { color-scheme: light; --bg: #f3f7f5; --panel: #ffffff; --panel-soft: #eaf3ee; --text: #213d32; --muted: #526e60; --line: #d4e3da; --cyan: #007f58; --gold: #007f58; --red: #b53642; --green: #147c51; --theme-accent: #00865c; --theme-secondary: #587caa; --theme-surface: #f5faf7; --theme-border: #c9ded2; --theme-note: #eef4fc; --theme-note-text: #395b7e; --theme-selected: #def3e7; --theme-shadow: 0 8px 28px #13382a0c; --chart-line: #00865c; --chart-history: #587caa; --chart-grid: #d8e6dd; --chart-label: #526e60; }
+html[data-theme=sunrise] { color-scheme: light; --bg: #ffe4cf; --panel: #fffaf2dc; --panel-soft: #fce9dd; --text: #433531; --muted: #775e55; --line: #e9caba; --cyan: #aa421b; --gold: #aa421b; --red: #b32348; --green: #227447; --theme-accent: #b9441d; --theme-secondary: #a64072; --theme-surface: #fffaf5; --theme-border: #e4bfae; --theme-note: #f9e4eb; --theme-note-text: #803654; --theme-selected: #ffead9; --theme-shadow: 0 10px 28px #9f482218; --chart-line: #c34b21; --chart-history: #a64072; --chart-grid: #e4c9b9; --chart-label: #775e55; }
+html[data-theme=aegis] { color-scheme: dark; --bg: #101113; --panel: #191b20; --panel-soft: #22252d; --text: #e7ebf3; --muted: #adb7c8; --line: #363c48; --cyan: #8cbaff; --gold: #8cbaff; --red: #ff909b; --green: #65d5a5; --theme-accent: #76abff; --theme-on-accent: #0c1c35; --theme-secondary: #b59aef; --theme-surface: #12151a; --theme-border: #485364; --theme-note: #202739; --theme-note-text: #a8c9fb; --theme-selected: #25364e; --theme-shadow: 0 12px 35px #0004; --theme-icon: invert(1); --chart-line: #76abff; --chart-history: #b59aef; --chart-grid: #363c48; --chart-label: #adb7c8; }
+.topbar .topbar-actions { display: flex; flex: none; gap: 10px; align-items: center; }
+.theme-dialog { width: min(590px, calc(100vw - 28px)); max-height: calc(100dvh - 32px); overflow: auto; padding: 26px; color: var(--text); background: var(--panel); border: 1px solid var(--theme-border); border-radius: 18px; box-shadow: var(--theme-shadow); }
+.theme-dialog::backdrop { background: #14241f66; backdrop-filter: blur(4px); }
+.theme-dialog-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 22px; gap: 12px; }
+.theme-dialog h2 { font-size: 21px; }
+.theme-close { width: 36px; height: 36px; border: 1px solid var(--theme-border); background: var(--panel-soft); color: var(--text); border-radius: 9px; font-size: 24px; cursor: pointer; }
+.theme-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.theme-option { min-width: 0; padding: 16px; display: grid; gap: 18px; border: 1px solid var(--theme-border); border-radius: 8px; background: var(--theme-surface); color: var(--text); cursor: pointer; text-align: left; transition: border-color .15s, box-shadow .15s; }
+.theme-option strong { font-size: 15px; font-weight: 650; }
+.theme-option:hover:not(:disabled) { border-color: var(--theme-accent); box-shadow: 0 0 0 1px var(--theme-accent); }
+.theme-option:disabled { cursor: default; border-color: var(--theme-accent); box-shadow: inset 0 0 0 1px var(--theme-accent); opacity: 1; }
+.theme-palette { display: flex; height: 38px; border-radius: 6px; overflow: hidden; border: 1px solid #80808040; }
+.theme-palette i { flex: 1; }
+.theme-choice-state { color: var(--theme-accent); font-size: 12px; }
+.theme-status { color: var(--muted); min-height: 20px; margin: 18px 0 0; font-size: 12px; }
+html[data-theme] body { background: var(--bg); color: var(--text); }
+html[data-theme=sunrise] body { background: linear-gradient(125deg, #ffe6cc, #ffd4d7 55%, #ffe3c7); background-attachment: fixed; }
+html[data-theme] :is(.panel,.metric,.sage-sidebar,.fund-dialog,.admin-shell,.login-panel) { background: var(--panel); color: var(--text); border-color: var(--line); box-shadow: var(--theme-shadow); }
+html[data-theme=sunrise] :is(.panel,.metric,.sage-sidebar) { backdrop-filter: blur(16px); }
+html[data-theme] :is(.eyebrow,.sage-sidebar small,.metric span,.metric small,.published-nav dt,.news-meta,.ai-meta,.field-note,.fund-chart-summary span,.fund-chart-status,.fund-chart-footer,footer) { color: var(--muted); }
+html[data-theme] :is(.sage-brand,.sage-nav a,.sage-nav button,#sidebarFundLabel,.fund-chart-summary strong,.news-item a,.news-research .news-evidence .ai-source) { color: var(--text); }
+html[data-theme] :is(.icon-button,#mobileMenu,.fund-ranges button,.tag,.status,.index-strip span,.sage-brand img) { background: var(--panel-soft); color: var(--text); border-color: var(--line); box-shadow: none; }
+html[data-theme] :is(.sage-nav a.active,.sage-nav a:hover,.sage-nav button:hover,.managed-fund.is-selected) { background: var(--theme-selected); color: var(--theme-accent); box-shadow: none; }
+html[data-theme] .sidebar-funds #manageFunds { background: var(--panel-soft); color: var(--text); border-color: var(--line); box-shadow: none; }
+html[data-theme] :is(.sage-brand,.sage-nav,.icon-button,#mobileMenu,#manageFunds) img { filter: var(--theme-icon); }
+html[data-theme] .sage-brand img { background: transparent; }
+html[data-theme] #sidebarToggle img { background: transparent; box-shadow: none; }
+html[data-theme] .fund-ranges button[aria-pressed=true], html[data-theme] #fundChartModes button[data-mode=intraday][aria-pressed=true] { background: var(--theme-accent); color: var(--theme-on-accent); border-color: var(--theme-accent); box-shadow: none; }
+html[data-theme] :is(.bar-track,th) { background: var(--panel-soft); color: var(--muted); }
+html[data-theme] .bar-fill { background: var(--theme-accent); }
+html[data-theme] .bar-row:nth-child(3n+2) .bar-fill { background: var(--theme-secondary); }
+html[data-theme] .bar-row:nth-child(3n) .bar-fill { background: #bd9862; }
+html[data-theme] :is(.impact p,.news-item p,.news-excerpt,.fund-selection) { color: var(--text); }
+html[data-theme] :is(tbody tr:nth-child(even),.total-row td) { background: var(--panel-soft); }
+html[data-theme] tbody tr:hover { background: var(--theme-selected); }
+html[data-theme] :is(.stock-link,.fund-chart-footer a,.admin-shell a,.valuation-meta a) { color: var(--theme-accent); }
+html[data-theme] .ai-editor-note { background: var(--theme-note); border-color: var(--theme-secondary); }
+html[data-theme] :is(.ai-editor-label,.ai-editor-note .ai-copy) { color: var(--theme-note-text); }
+html[data-theme] .chat-window { background: var(--panel); color: var(--text); border-color: var(--line); box-shadow: var(--theme-shadow); color-scheme: inherit; }
+html[data-theme] .chat-window .chat-assistant { background: var(--panel-soft); box-shadow: none; }
+html[data-theme] :is(.chat-header,.chat-window #questionForm,.chat-window #chatStatus) { background: var(--panel-soft); color: var(--text); border-color: var(--line); }
+html[data-theme] :is(.chat-input-wrap,.chat-window textarea,.chat-window .chat-suggestions button) { background: var(--theme-surface); color: var(--text); border-color: var(--theme-border); box-shadow: none; }
+html[data-theme] :is(.chat-header small,.chat-compose-actions small,.chat-window .ai-meta,.chat-evidence .ai-meta,.managed-fund-name small,#fundCount) { color: var(--muted); }
+html[data-theme] :is(.chat-window textarea::placeholder,input::placeholder) { color: var(--muted); }
+html[data-theme] :is(.chat-window .chat-user,.chat-launcher,.ai-section button,.fund-dates button,.login-row button,.admin-shell button,.fund-dialog button), html[data-theme] .chat-window #askButton { background: var(--theme-accent); color: var(--theme-on-accent); border-color: var(--theme-accent); box-shadow: none; }
+html[data-theme] :is(.chat-header img,.fund-dialog .fund-actions img) { filter: var(--theme-icon); }
+html[data-theme=aegis] :is(.chat-window #askButton,.chat-launcher) img { filter: none; }
+html[data-theme] :is(.chat-evidence summary,.chat-window .ai-source) { color: var(--theme-accent); }
+html[data-theme] .chat-window .chat-suggestions button:hover:not(:disabled) { background: var(--theme-selected); }
+html[data-theme] :is(.fund-dialog input:not([type=radio]),.fund-dialog #newFundCode,.admin-shell input:not([type=checkbox]),.admin-shell select,.login-row input,.fund-dates input) { background: var(--theme-surface); color: var(--text); border-color: var(--theme-border); box-shadow: none; }
+html[data-theme] :is(.fund-dialog .fund-actions button,.fund-dialog .fund-close,.admin-shell button.secondary) { background: var(--panel-soft); color: var(--text); border-color: var(--theme-border); }
+html[data-theme] .fund-dialog .managed-fund.is-selected { box-shadow: inset 3px 0 var(--theme-accent); }
+html[data-theme] .fund-selection input { accent-color: var(--theme-accent); }
+html[data-theme] :is(.sidebar-funds,.sage-sidebar-bottom,#fundChartModes,.fund-dialog #addFundForm,.fund-dialog .managed-fund) { border-color: var(--line); }
+html[data-theme] .fund-warning { background: var(--panel-soft); color: var(--text); border-color: var(--theme-secondary); }
+html[data-theme] :focus-visible { outline-color: var(--theme-accent); }
+@media(max-width: 600px) { .topbar { flex-wrap: wrap; } .topbar > div:first-child { flex-basis: 100%; } .topbar .topbar-actions { margin-left: auto; } .theme-dialog { padding: 20px 16px; } .theme-options { gap: 10px; } .theme-option { padding: 12px 10px; } .theme-option strong { font-size: 13px; } }
+@media(prefers-reduced-motion: reduce) { .theme-option { transition: none; } }
+@media (max-width: 1279px) {
+  .shell { padding-top: 20px; }
+  .topbar { flex-wrap: wrap; gap: 16px; }
+  .topbar .topbar-actions { order: -1; flex: 0 0 100%; margin: 0; gap: 10px; }
+  .topbar > div:first-child { flex-basis: 100%; min-width: 0; }
+  .topbar-actions #mobileMenu { position: static; margin-right: auto; }
+  .topbar-actions :is(#mobileMenu,.icon-button) { width: 44px; height: 44px; padding: 0; display: grid; place-items: center; border-radius: 12px; flex: none; }
+}
+
+/* Keep the saved sage ID so existing selections inherit the redesigned palette. */
+html[data-theme=sage] {
+  color-scheme: light;
+  --bg: #f2f3f5; --panel: #ffffff; --panel-soft: #eceef2;
+  --text: #292c34; --muted: #656b78; --line: #dfe2e8;
+  --cyan: #a83c40; --gold: #a83c40; --red: #bd343f; --green: #23774e;
+  --theme-accent: #a83c40; --theme-on-accent: #ffffff; --theme-secondary: #637b9d;
+  --theme-surface: #fafbfc; --theme-border: #d5d9e1; --theme-selected: #f7e9e8;
+  --theme-note: #edf1f8; --theme-note-text: #405878;
+  --theme-shadow: 0 6px 24px #252c3a09, 0 1px 3px #252c3a04;
+  --chart-line: #a83c40; --chart-history: #637b9d; --chart-grid: #e1e4ea; --chart-label: #656b78;
+}
+html[data-theme=sage] .metric.primary { background: #fff7f6; border-color: #edd8d7; }
+html[data-theme=sage] .metric:nth-child(3) { background: #f4f6fa; }
+html[data-theme=sage] .bar-row:nth-child(3n) .bar-fill { background: #9b879f; }
+html[data-theme=sage] .tag:nth-child(3n) { background: #edf1f8; color: #405878; }
+html[data-theme=sage] .impact p { border-left-color: #a83c40; }
+html[data-theme=sage] .news-item a:hover { color: var(--theme-accent); }
+html[data-theme=sage] .chat-input-wrap:focus-within { border-color: var(--theme-accent); box-shadow: 0 0 0 3px #a83c4012; }
+html[data-theme=sage] .chat-window .chat-suggestions button:hover:not(:disabled) { border-color: #c69092; }
+html[data-theme=sage] .fund-dialog .fund-actions button:hover:not(:disabled) { background: var(--theme-selected); }
+html[data-theme=sage] :is(.fund-dialog,.theme-dialog)::backdrop { background: #22273366; }
+
+/* Shared glass finishes retain each theme's own surface and contrast palette. */
+html[data-theme] {
+  --glass-surface: #ffffffe3; --glass-floating: #ffffffcc;
+  --glass-primary: #fff8f5e6; --glass-secondary: #f5f8fee8;
+  --glass-edge: #ffffffce; --glass-highlight: #ffffff;
+  --glass-control: #ffffffad; --glass-hover: #fffffff0;
+  --glass-table: #fffffff5; --glass-chat: #f2f4f8ad;
+  --glass-bubble: #fffffff5; --glass-backdrop: #343d5038;
+  --glass-shadow-color: #35415a12; --glass-blur: 20px;
+  --theme-tertiary: #9b879f;
+  --glass-background: linear-gradient(125deg, #e9edf4, #f6f4f5 42%, #f3e8e7 72%, #e9edf4);
+  --theme-shadow: 0 10px 32px var(--glass-shadow-color), inset 0 1px 0 var(--glass-highlight);
+}
+html[data-theme=emerald] {
+  --glass-background: linear-gradient(125deg, #e8f0ed, #f5f8f6 45%, #e8edf6);
+  --glass-primary: #eff9f4e8; --glass-secondary: #f1f5fce8;
+  --glass-chat: #edf5f1c7; --glass-edge: #ffffffd9;
+  --glass-shadow-color: #243e3610; --theme-tertiary: #ab8655;
+}
+html[data-theme=sunrise] {
+  --glass-background: linear-gradient(125deg, #fae8d9, #f7dce1 52%, #f3e8de);
+  --glass-surface: #fffaf5e6; --glass-floating: #fffaf2d6;
+  --glass-primary: #fff1e6ee; --glass-secondary: #fff1f5e8;
+  --glass-control: #fffaf5c2; --glass-hover: #fffaf5;
+  --glass-table: #fffaf7f7; --glass-chat: #f8eae4c9;
+  --glass-bubble: #fffaf7f5; --glass-backdrop: #593d493b;
+  --glass-edge: #fffaf2da; --glass-highlight: #fffaf5;
+  --glass-shadow-color: #743b4512; --theme-tertiary: #8a7899;
+}
+html[data-theme=aegis] {
+  --glass-background: linear-gradient(125deg, #101216, #181a20 48%, #211e28);
+  --glass-surface: #202227eb; --glass-floating: #24272edb;
+  --glass-primary: #252d3beb; --glass-secondary: #2a2735ed;
+  --glass-control: #343942a6; --glass-hover: #3b424e;
+  --glass-table: #202227f7; --glass-chat: #2c303bce;
+  --glass-bubble: #333945f5; --glass-backdrop: #080a128c;
+  --glass-edge: #c0cce426; --glass-highlight: #d0dcf21c;
+  --glass-shadow-color: #00000042; --theme-tertiary: #d0b07b;
+  --theme-note: #293349; --theme-note-text: #bad4ff; --chart-grid: #424956;
+}
+html[data-theme] body { background: var(--glass-background); background-attachment: fixed; }
+html[data-theme] :is(.panel,.metric,.sage-sidebar,.fund-dialog,.theme-dialog,.chat-window,.login-panel,.admin-shell) {
+  background: var(--glass-surface); border: 1px solid var(--glass-edge); box-shadow: var(--theme-shadow);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(120%); backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+}
+html[data-theme] :is(.sage-sidebar,.fund-dialog,.theme-dialog,.chat-window) {
+  background: var(--glass-floating); box-shadow: 0 18px 50px var(--glass-shadow-color), inset 0 1px 0 var(--glass-highlight);
+}
+html[data-theme] .metric.primary { background: var(--glass-primary); border-color: var(--glass-edge); }
+html[data-theme] .metric:nth-child(3) { background: var(--glass-secondary); }
+html[data-theme] .topbar { padding: 10px 0; border: 0; background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+html[data-theme] :is(.icon-button,#mobileMenu,.sidebar-funds #manageFunds) {
+  background: var(--glass-control); border-color: var(--glass-edge);
+  box-shadow: 0 2px 5px var(--glass-shadow-color), inset 0 1px 0 var(--glass-highlight);
+  transition: background .18s ease, box-shadow .18s ease;
+}
+html[data-theme] :is(.icon-button,#mobileMenu,.sidebar-funds #manageFunds):hover {
+  background: var(--glass-hover); box-shadow: 0 4px 10px var(--glass-shadow-color), inset 0 1px 0 var(--glass-highlight);
+}
+html[data-theme] :is(.sage-nav a.active,.sage-nav a:hover,.sage-nav button:hover) { background: var(--theme-selected); }
+html[data-theme] :is(.sidebar-funds,.sage-sidebar-bottom,#fundChartModes) { border-color: var(--line); }
+html[data-theme] .table-panel { background: var(--glass-table); }
+html[data-theme] :is(th,.total-row td) { background: var(--panel-soft); }
+html[data-theme] tbody tr:nth-child(even) { background: var(--glass-chat); }
+html[data-theme] tbody tr:hover { background: var(--theme-selected); }
+html[data-theme] .bar-row:nth-child(3n) .bar-fill { background: var(--theme-tertiary); }
+html[data-theme] .tag:nth-child(3n) { background: var(--theme-note); color: var(--theme-note-text); }
+html[data-theme] .impact p { border-left-color: var(--theme-secondary); }
+html[data-theme] .news-item a:hover { color: var(--theme-accent); }
+html[data-theme] :is(.chat-header,.chat-window #questionForm,.chat-window #chatStatus) { background: var(--glass-chat); border-color: var(--line); }
+html[data-theme] .chat-window .chat-assistant { background: var(--glass-bubble); color: var(--text); box-shadow: 0 2px 8px var(--glass-shadow-color); }
+html[data-theme] :is(.chat-input-wrap,.chat-window .chat-suggestions button) { background: var(--glass-control); border-color: var(--theme-border); }
+html[data-theme] .chat-window .chat-input-wrap textarea { background: transparent; }
+html[data-theme] .chat-input-wrap:focus-within { border-color: var(--theme-accent); box-shadow: 0 0 0 2px var(--theme-selected); }
+html[data-theme] .chat-window .chat-suggestions button:hover:not(:disabled) { border-color: var(--theme-accent); background: var(--theme-selected); }
+html[data-theme] .fund-dialog .fund-actions button:hover:not(:disabled) { background: var(--theme-selected); }
+html[data-theme] .fund-dialog .fund-actions button:last-child { color: var(--red); }
+html[data-theme] :is(.fund-dialog,.theme-dialog)::backdrop { background: var(--glass-backdrop); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
+html[data-theme] :is(.theme-dialog,.fund-dialog)[open] { animation: theme-dialog-in .24s cubic-bezier(.2,.8,.2,1); }
+html[data-theme] .theme-option { min-height: 150px; }
+html[data-theme] .theme-option:disabled { background: var(--theme-selected); }
+html[data-theme] .theme-option .theme-choice-state { min-height: 18px; }
+@keyframes theme-dialog-in {
+  from { opacity: 0; transform: translateY(10px) scale(.97); }
+  to { opacity: 1; transform: none; }
+}
+@media (max-width: 720px) {
+  html[data-theme] { --glass-blur: 10px; --glass-floating: var(--glass-table); }
+  html[data-theme] .topbar { padding: 0; gap: 18px; }
+  html[data-theme] :is(.panel,.metric) { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  html[data-theme] .theme-option { min-height: 138px; }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html[data-theme] :is(.panel,.metric,.sage-sidebar,.fund-dialog,.theme-dialog,.chat-window,.login-panel,.admin-shell) { background: var(--panel); }
+  html[data-theme] :is(.metric.primary,.metric:nth-child(3)) { background: var(--panel); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  html[data-theme] :is(.metric.primary,.metric:nth-child(3)) { background: var(--panel); }
+  html[data-theme] :is(.panel,.metric,.sage-sidebar,.fund-dialog,.theme-dialog,.chat-window,.login-panel,.admin-shell) {
+    background: var(--panel); -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+  html[data-theme] :is(.fund-dialog,.theme-dialog)::backdrop { background: #151922bb; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme] :is(.theme-dialog,.fund-dialog)[open] { animation: none; }
+  html[data-theme] :is(.icon-button,#mobileMenu,.sidebar-funds #manageFunds) { transition: none; }
+}

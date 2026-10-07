@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><script src="/themes.js?v=3"></script><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>管理后台</title><link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/ai.css"><link rel="stylesheet" href="/sage.css?v=1"><link rel="stylesheet" href="/themes.css?v=6"></head>
+<body><main class="admin-shell">
+  <header class="admin-header"><h1>管理后台</h1><a href="/">返回看板</a></header>
+  <form id="adminLogin" class="settings-section">
+    <label for="adminPassword">管理员密码</label>
+    <div class="form-inline"><input id="adminPassword" type="password" autocomplete="current-password" required><button type="submit">登录</button></div>
+  </form>
+  <div id="settingsArea" hidden>
+    <section class="settings-section"><a href="/">返回首页管理基金</a></section>
+    <form id="settingsForm">
+      <section class="settings-section"><h2>行情数据源</h2>
+        <label for="marketSource">股票、大盘指数与 K 线默认来源</label>
+        <select id="marketSource"><option value="eastmoney">东方财富优先 · 腾讯备用</option><option value="tencent">腾讯优先 · 东方财富备用</option></select>
+        <p class="field-note">行业板块行情仍来自东方财富；腾讯缺失的行业使用已有分类映射。</p>
+      </section>
+      <section class="settings-section"><h2>AI 服务</h2>
+        <label class="check-line"><input id="enabled" type="checkbox">启用 AI 解读和问答</label>
+        <div class="settings-grid">
+          <div><label for="endpoint">API 地址</label><input id="endpoint" type="url" placeholder="https://api.example.com/v1" autocomplete="off"><p class="field-note">兼容 Chat Completions；支持基础地址或完整 /chat/completions 地址。</p></div>
+          <div><label for="model">模型名称</label><input id="model" autocomplete="off" placeholder="填写服务商提供的模型 ID"></div>
+          <div><label for="apiKey">API Key <span id="keyState"></span></label><input id="apiKey" type="password" autocomplete="new-password" placeholder="留空保留已保存密钥"><label class="check-line"><input id="clearApiKey" type="checkbox">删除已保存 API Key</label></div>
+        </div>
+      </section>
+      <section class="settings-section"><h2>新闻检索</h2>
+        <label for="searchProvider">默认检索平台</label>
+        <select id="searchProvider">
+          <option value="feed">财经资讯 · AI 语义筛选</option>
+          <option value="tavily">Tavily</option>
+          <option value="volcengine">火山引擎联网搜索</option>
+          <option value="tencent">腾讯云联网搜索</option>
+          <option value="bailian">阿里云百炼联网搜索</option>
+        </select>
+        <div data-provider="feed"><p class="field-note">财经资讯候选源 · 无搜索服务费用</p></div>
+        <div data-provider="tavily" hidden>
+          <label for="searchKey">Tavily Search Key <span id="searchState"></span></label><input id="searchKey" type="password" autocomplete="new-password" placeholder="留空保留已保存密钥">
+          <label class="check-line"><input id="clearSearchKey" type="checkbox">删除 Tavily Key</label>
+          <a class="provider-link" href="https://app.tavily.com/" target="_blank" rel="noopener noreferrer">Tavily 控制台</a>
+        </div>
+        <div data-provider="volcengine" hidden>
+          <label for="volcSearchKey">火山搜索 API Key <span id="volcSearchState"></span></label><input id="volcSearchKey" type="password" autocomplete="new-password" placeholder="留空保留已保存密钥">
+          <label class="check-line"><input id="clearVolcSearchKey" type="checkbox">删除火山搜索 Key</label>
+          <a class="provider-link" href="https://console.volcengine.com/search-infinity/api-key" target="_blank" rel="noopener noreferrer">火山搜索控制台</a>
+        </div>
+        <div data-provider="tencent" hidden>
+          <label for="tencentSearchKey">腾讯联网搜索服务 API Key <span id="tencentSearchState"></span></label><input id="tencentSearchKey" type="password" autocomplete="new-password" placeholder="留空保留已保存密钥">
+          <label class="check-line"><input id="clearTencentSearchKey" type="checkbox">删除腾讯搜索 Key</label>
+          <p class="field-note">凭据类型：联网搜索服务 API Key，非云账号 SecretId / SecretKey。</p>
+          <a class="provider-link" href="https://cloud.tencent.com/document/product/1806/130615" target="_blank" rel="noopener noreferrer">腾讯服务 Key 接入文档</a>
+        </div>
+        <div data-provider="bailian" hidden>
+          <div class="settings-grid">
+            <div><label for="bailianSearchKey">百炼 API Key <span id="bailianSearchState"></span></label><input id="bailianSearchKey" type="password" autocomplete="new-password" placeholder="留空保留已保存密钥"><label class="check-line"><input id="clearBailianSearchKey" type="checkbox">删除百炼搜索 Key</label></div>
+            <div><label for="bailianModel">百炼搜索模型</label><input id="bailianModel" autocomplete="off" placeholder="qwen-plus"></div>
+          </div>
+          <label for="bailianEndpoint">DashScope 原生完整接口地址</label><input id="bailianEndpoint" type="url" autocomplete="off" placeholder="https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation">
+          <p class="field-note">搜索模型需支持原生文本生成、非流式联网搜索和来源返回；默认 qwen-plus。地址须与 Key 所属地域、业务空间匹配，不是 /chat/completions 地址。百炼搜索另计模型和搜索费用。</p>
+          <a class="provider-link" href="https://help.aliyun.com/zh/model-studio/web-search" target="_blank" rel="noopener noreferrer">百炼联网搜索文档</a>
+        </div>
+      </section>
+      <section class="settings-section"><h2>缓存策略</h2><p>新闻结果：15 分钟 · 新闻解读：15 分钟</p><p class="field-note">平台独立缓存 · 有效结果共享 · 每次问答单独调用模型</p></section>
+      <div class="admin-actions"><button id="saveSettings" type="submit">保存设置</button><button id="adminLogout" type="button" class="secondary">退出后台</button></div>
+    </form>
+  </div>
+  <p id="adminStatus" role="status" aria-live="polite"></p>
+</main><script src="/admin.js?v=20260919-2"></script></body></html>

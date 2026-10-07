@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>基金调仓观察</title>
+    <script src="/themes.js?v=4"></script>
+    <link rel="stylesheet" href="/style.css?v=20260929-estimate-layout">
+    <link rel="stylesheet" href="/ai.css">
+    <link rel="stylesheet" href="/sage.css?v=20260922-3">
+    <link rel="stylesheet" href="/themes.css?v=6">
+    <link rel="stylesheet" href="/liquid-glass.css?v=2">
+    <link rel="stylesheet" href="/chat-focus.css?v=1">
+    <link rel="stylesheet" href="/glass-controls.css?v=3">
+    <link rel="stylesheet" href="/glass-preferences.css?v=1">
+    <link rel="stylesheet" href="/stance-popover.css?v=1">
+  </head>
+  <body>
+    <button id="mobileMenu" type="button" aria-label="展开导航" aria-expanded="false" aria-controls="sidebar"><img src="/icons/layout-dashboard.svg" alt=""></button>
+    <button id="sidebarBackdrop" aria-label="关闭导航" type="button" hidden></button>
+    <nav id="sidebar" class="sage-sidebar" aria-label="看板导航">
+      <div class="sage-brand"><button id="sidebarToggle" type="button" aria-label="收起侧栏" aria-expanded="true" title="收起侧栏"><img class="brand-logo brand-logo-light" src="/fundinsight-black.png" alt=""><img class="brand-logo brand-logo-dark" src="/fundinsight-white.png" alt=""></button><span>FundInsight</span></div>
+      <div class="sidebar-funds"><button id="manageFunds" type="button" aria-label="管理基金" title="管理基金" aria-haspopup="dialog"><img src="/icons/folder-cog.svg" alt=""><span>管理基金</span><img class="fund-manage-icon" src="/icons/settings-2.svg" alt=""></button></div>
+      <div class="sidebar-workspace"><small id="sidebarFundLabel">正在读取基金</small><div class="sage-nav">
+        <a class="active" href="#overview"><img src="/icons/layout-dashboard.svg" alt="">数据概览</a>
+        <a href="#trend"><img src="/icons/chart-no-axes-combined.svg" alt="">净值走势</a>
+        <a href="#allocation"><img src="/icons/chart-pie.svg" alt="">行业分布</a>
+        <a href="#market"><img src="/icons/newspaper.svg" alt="">新闻与解读</a>
+        <a href="#holdings"><img src="/icons/list.svg" alt="">重仓明细</a>
+      </div></div>
+      <div class="sage-sidebar-bottom sage-nav"><button id="sidebarAssistant" type="button"><img src="/icons/bot-message-square.svg" alt="">智能助手</button><a href="/admin"><img src="/icons/settings-2.svg" alt="">系统设置</a></div>
+    </nav>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Fund Intelligence</p>
+          <h1 id="fundTitle">基金调仓观察</h1>
+        </div>
+        <div class="topbar-actions">
+        <button id="themeButton" class="icon-button" type="button" title="切换主题" aria-label="切换主题" aria-haspopup="dialog" aria-controls="themeDialog"><img src="/icons/palette.svg" alt=""></button>
+        <button id="refreshBtn" class="icon-button" title="刷新数据" aria-label="刷新数据">
+          <img src="/icons/refresh-cw.svg" alt="">
+        </button>
+        </div>
+      </header>
+
+      <p id="fundWarning" class="fund-warning" role="status" hidden></p>
+      <section class="overview" id="overview">
+        <article class="metric primary valuation-metric">
+          <span>估算净值</span>
+          <strong id="estimateValue">--</strong>
+          <div id="estimateMeta" class="valuation-meta">
+            <a id="estimateSource">等待数据</a>
+            <time id="estimateTime">--</time>
+          </div>
+          <dl class="published-nav">
+            <div><dt>已公布净值</dt><dd id="publishedNav">--</dd></div>
+            <div><dt>净值日期</dt><dd><time id="publishedNavDate">--</time></dd></div>
+          </dl>
+        </article>
+        <article class="metric return-metric">
+          <span>估值涨跌</span>
+          <strong id="estimatePct">--</strong>
+          <div class="valuation-meta">
+            <small id="navDate">--</small>
+            <time id="estimatePctTime">--</time>
+          </div>
+          <dl class="published-nav static-contribution"><div><dt>静态持仓贡献</dt><dd id="staticContribution">--</dd></div></dl>
+          <small class="contribution-note">按披露持仓与有效行情计算，非完整基金涨跌</small>
+        </article>
+        <article class="metric">
+          <span>前三重仓</span>
+          <strong id="topWeight">--</strong>
+          <small>集中度</small>
+          <dl id="topHoldingIndustries" class="top-holding-industries" aria-label="前三重仓对应行业"></dl>
+        </article>
+        <article class="metric stance-metric" id="stanceMetric" tabindex="0" role="button" aria-label="短线状态，查看判断依据" aria-expanded="false" aria-controls="stancePopover">
+          <span>短线状态</span>
+          <strong id="stance">--</strong>
+          <small id="stanceBasis">--</small>
+          <small id="updatedAt">--</small>
+          <div id="stancePopover" class="stance-popover" role="region" aria-labelledby="stanceExplanationTitle" aria-hidden="true">
+            <div class="stance-popover-heading"><h3 id="stanceExplanationTitle">判断依据</h3><span id="stanceExplanationLabel">--</span></div>
+            <p id="stanceExplanation">正在读取判断依据…</p>
+            <dl id="stanceEvidence" class="stance-evidence"></dl>
+            <p class="stance-popover-note">基于披露持仓与可核验行情的规则参考，不代表后续涨跌。</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid">
+        <div class="analysis-stack">
+        <article class="panel chart-panel" id="trend">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Fund Net Asset Value</p>
+          <h2 id="chartTitle">基金盘中估值</h2>
+            </div>
+          </div>
+          <div id="fundChartModes" class="fund-ranges" role="group" aria-label="基金图表类型">
+            <button type="button" data-mode="intraday" aria-pressed="true">盘中估值</button>
+            <button type="button" data-mode="history" aria-pressed="false">历史净值</button>
+          </div>
+          <div id="fundRanges" class="fund-ranges" role="group" aria-label="历史净值时间范围" hidden>
+            <button type="button" data-range="1m" aria-pressed="false">近1月</button>
+            <button type="button" data-range="3m" aria-pressed="false">近3月</button>
+            <button type="button" data-range="6m" aria-pressed="false">近6月</button>
+            <button type="button" data-range="1y" aria-pressed="false">近1年</button>
+            <button type="button" data-range="3y" aria-pressed="false">近3年</button>
+            <button type="button" data-range="all" aria-pressed="false">成立以来</button>
+            <button type="button" data-range="custom" aria-pressed="false">自定义</button>
+          </div>
+          <form id="fundDateForm" class="fund-dates" hidden>
+            <label>开始日期<input id="fundStartDate" type="date" required></label>
+            <label>结束日期<input id="fundEndDate" type="date" required></label>
+            <button type="submit">确认</button>
+          </form>
+          <div class="fund-chart-summary"><strong id="fundChartValue">--</strong><span id="fundChartDate">单位净值</span></div>
+          <div class="fund-chart-wrap"><canvas id="fundCanvas" width="1100" height="480" tabindex="0" role="img" aria-label="基金历史单位净值走势"></canvas></div>
+          <p id="fundChartStatus" class="fund-chart-status" role="status">正在读取盘中估值…</p>
+          <div class="fund-chart-footer"><span id="fundChartKind">盘中估算净值</span><a id="fundChartSource" target="_blank" rel="noopener noreferrer">估值来源</a></div>
+          <p id="fundChartNotice" class="fund-chart-status">盘中估值仅供参考，以基金公布净值为准。</p>
+        </article>
+
+
+        <article class="panel">
+          <div class="panel-head compact">
+            <div>
+              <p class="eyebrow" id="allocation">Allocation</p>
+              <h2>行业分布</h2>
+            </div>
+          </div>
+          <div id="industryBars" class="bar-list"></div>
+          <div id="conceptTags" class="tag-cloud"></div>
+        </article>
+
+        </div>
+        <div class="analysis-stack market-stack">
+        <aside class="panel events-panel" id="market">
+          <div class="panel-head compact">
+            <div>
+              <p class="eyebrow">Market Events</p>
+              <h2>市场新闻与解读</h2>
+            </div>
+          </div>
+          <section class="ai-section news-research" aria-label="新闻与 AI 解读">
+            <div class="ai-heading"><span class="ai-editor-label">AI 助手 · 新闻解读</span><button id="researchButton" type="button">更新解读</button></div>
+            <p id="researchStatus" class="ai-meta ai-copy" role="status" aria-live="polite"></p>
+            <div id="researchContent"></div>
+          </section>
+          <details class="market-observations"><summary>行情观察与规则分析</summary><div id="impactLines" class="impact"></div></details>
+          <div id="newsList" class="news-list"></div>
+        </aside>
+        <article class="panel rebalance-panel">
+          <div class="panel-head compact"><div><p class="eyebrow">Rebalance</p><h2>调仓变化</h2></div></div>
+          <div id="changeList" class="change-list" tabindex="0" aria-label="调仓变化列表"></div>
+        </article>
+        </div>
+      </section>
+
+      <section class="panel table-panel" id="holdings">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Top Holdings</p>
+            <h2>重仓股明细</h2>
+          </div>
+          <div id="indexStrip" class="index-strip"></div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>排名</th>
+                <th>股票</th>
+                <th>行业</th>
+                <th>占净值</th>
+                <th>最新价</th>
+                <th>涨跌幅</th>
+                <th>贡献估算</th>
+                <th>主力净流入</th>
+              </tr>
+            </thead>
+            <tbody id="holdingRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer>
+        <span id="sourceText">数据源加载中</span>
+        <span>仅供信息展示，不构成投资建议。</span>
+      </footer>
+    </main>
+
+    <aside id="chatWindow" class="chat-window" aria-labelledby="chatTitle" hidden>
+      <header class="chat-header"><div class="chat-identity"><img src="/icons/bot-message-square.svg" alt="" width="28" height="28"><div><h2 id="chatTitle">基金问答</h2><small id="chatFundLabel">正在选择基金</small></div></div><button id="minimizeChat" type="button" title="最小化" aria-label="最小化聊天窗口"><img src="/icons/minus.svg" alt="" width="22" height="22"></button></header>
+      <div id="chatHistory" role="log" aria-live="polite"></div>
+      <form id="questionForm"><label for="question" class="chat-label">发送消息</label><div class="chat-input-wrap"><textarea id="question" rows="2" maxlength="1200" required placeholder="聊聊你关心的基金问题…"></textarea><button id="askButton" type="submit" title="发送" aria-label="发送"><img src="/icons/arrow-up.svg" alt="" width="22" height="22"></button></div><div class="chat-compose-actions"><small>AI 分析仅供参考</small></div></form>
+      <p id="chatStatus" class="ai-meta" role="status"></p>
+    </aside>
+    <button id="chatLauncher" class="chat-launcher" type="button" title="打开 AI 基金助手" aria-label="打开 AI 基金助手" aria-controls="chatWindow" aria-expanded="true" hidden><img src="/icons/bot-message-square.svg" alt="" width="30" height="30"><span id="chatUnread" aria-label="有新回复" hidden></span></button>
+
+    <dialog id="fundDialog" class="fund-dialog" aria-labelledby="fundDialogTitle">
+      <header class="fund-dialog-head"><div><p class="eyebrow">MY FUNDS</p><h2 id="fundDialogTitle">基金管理 <span id="fundCount"></span></h2></div><button id="closeFunds" class="fund-close" type="button" aria-label="关闭基金管理" title="关闭">×</button></header>
+      <div id="fundManager" hidden>
+        <form id="addFundForm"><label class="visually-hidden" for="newFundCode">添加基金代码</label><div class="form-inline"><input id="newFundCode" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="六位基金代码" required><button type="submit">添加基金</button></div></form>
+        <div id="managedFunds"></div>
+      </div>
+      <p id="fundStatus" class="field-note" role="status" aria-live="polite"></p>
+    </dialog>
+    <script src="/app.js?v=20260929-estimate-layout"></script>
+    <script src="/fund-manager.js?v=20260922-2"></script>
+    <script src="/chat-resize.js?v=20260921-2"></script>
+    <script src="/fund-chart.js?v=20260928-controls-2"></script>
+    <script src="/ai-ui.js?v=20260929-stream"></script>
+    <script src="/sage.js?v=20260923"></script>
+    <script src="/liquid-glass.js?v=1"></script>
+  </body>
+</html>
