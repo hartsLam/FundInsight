@@ -77,7 +77,7 @@ npm start
 - 前台：<http://localhost:3210>
 - 管理后台：<http://localhost:3210/admin>
 
-未设置 `ADMIN_PASSWORD` 时，首次启动生成随机管理员密码，保存到 `data/admin-password.txt`。仅在服务器本地查看和保管，不要公开该文件。
+未设置 `ADMIN_PASSWORD` 时，首次启动生成随机管理员密码，保存到 `data/admin-password.txt`。仅在服务器本地查看和保管。
 
 ## AI 与数据源配置
 
@@ -165,7 +165,9 @@ npm test
 
 ## 安全与参考材料
 
-指标计算使用 `technicalindicators`，图标资源含 Lucide 许可文件，位于 `public/icons/LICENSE`。界面曾参考 [Superdesign](https://superdesign.dev/library) 的配色与视觉案例，并结合本项目调整。
+
+指标计算使用 `technicalindicators`，图标资源含 Lucide 许可文件，位于 `public/icons/LICENSE`。
+界面曾参考 [Superdesign](https://superdesign.dev/library) 的配色与视觉案例，并结合本项目调整。
 
 本说明不额外授予第三方资源或整个项目的开源许可。公开分发或商业使用前，请确认项目授权、第三方许可与数据来源使用条款。
 
