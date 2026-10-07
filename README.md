@@ -165,9 +165,7 @@ npm test
 
 ## 安全与参考材料
 
-API Key 在服务端 `data/admin-settings.json` 中明文保存，请限制文件权限，不提交版本库。再次分享时排除整个 `data/`、环境配置、日志及 Git 历史。生成脱敏副本不会自动撤销或轮换原部署凭据。
-
-指标计算使用 `technicalindicators`，图标资源含 Lucide 许可文件，位于 `public/icons/LICENSE`。盘中估值展示思路参考 [x2rr/funds](https://github.com/x2rr/funds)。界面曾参考 [Superdesign](https://superdesign.dev/library) 的配色与视觉案例，并结合本项目调整。
+指标计算使用 `technicalindicators`，图标资源含 Lucide 许可文件，位于 `public/icons/LICENSE`。界面曾参考 [Superdesign](https://superdesign.dev/library) 的配色与视觉案例，并结合本项目调整。
 
 本说明不额外授予第三方资源或整个项目的开源许可。公开分发或商业使用前，请确认项目授权、第三方许可与数据来源使用条款。
 
